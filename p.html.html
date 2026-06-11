@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transport Website</title>
+
+<style>
+
+
+#topBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+    
+    background-color: #ff6f00;
+    color: white;
+    border: none;
+    outline: none;
+    
+    padding: 12px 16px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+
+    display: none; /* hidden initially */
+}
+
+#topBtn:hover {
+    background-color: #1565c0;
+}
+
+.details-box{
+  background: #e0f7fa;   /* light teal */
+  width:350px;
+  padding:25px;
+  border-radius:20px;
+  position:relative;
+}
+
+.vehicle-title{
+  background: linear-gradient(90deg, #0097a7, #00bcd4);
+  color:white;
+  padding:10px 20px;
+  border-radius:10px;
+  display:inline-block;
+  margin-bottom:15px;
+}
+.details-box{
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.vehicle-title:hover{
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+.details-row{
+display:flex;
+justify-content:space-between;
+margin:10px 0;
+}
+
+.book-btn{
+  width:100%;
+  margin-top:20px;
+  padding:10px;
+  background: linear-gradient(90deg, #0097a7, #00bcd4);
+  color:white;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+.close-btn{
+  position:absolute;
+  top:10px;
+  right:15px;
+  cursor:pointer;
+  font-size:20px;
+  font-weight:bold;
+  z-index:1001;
+  background: linear-gradient(90deg, #0097a7, #00bcd4);
+  color:white;
+  padding:5px 10px;
+  border-radius:50%;
+  transition:0.3s;
+}
+
+/* 🔥 HOVER EFFECT */
+.close-btn:hover{
+  background: linear-gradient(90deg, #ff9800, #ff6f00);
+  transform: scale(1.2);
+}
+.section-title{
+text-align:center;
+font-size:32px;
+margin:40px 0;
+color:#0b1c3d;
+}
+
+.category{
+    width:100%;
+    text-align:center;
+    font-size:28px;
+    margin:40px 0 20px 0;
+ background: linear-gradient(90deg, #43cea2, #185a9d);
+    color: white;
+    padding:15px;
+    border-radius:8px;
+    letter-spacing:1px;
+}
+/* GRID LAYOUT */
+.vehicle-container{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+justify-content:center;
+}
+
+/* CARD DESIGN */
+.card{
+width:300px;
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+text-align:center;
+transition:0.3s;
+}
+
+
+.card h4{
+padding:10px;
+}
+
+/* HOVER EFFECT */
+.card:hover{
+transform:translateY(-8px);
+}
+/* NAVBAR */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+background: linear-gradient(90deg, #0097a7, #00bcd4);
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+.logo{
+    font-size:24px;
+   color: white;   /* ✅ visible */
+    font-weight: bold;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+    align-items:center;
+color: white;   /* ✅ visible */
+    font-weight: 500;
+}
+.nav-links a{
+    text-decoration:none;
+    color:white;   /* ✅ make all links white */
+    font-weight:500;
+}
+
+.register-link{
+  color:#0097a7;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.register-link:hover{
+  color:#ff6f00;
+  text-decoration: underline;
+}
+/* Dropdown box */
+.dropdown{
+display:none;
+position:absolute;
+background: linear-gradient(90deg, #0097a7, #00bcd4);
+color:white;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+padding:10px;
+}
+
+/* Show dropdown on hover */
+.menu-item:hover .dropdown{
+display:block;
+color:white;
+
+}
+
+/* Dropdown items */
+.dropdown a{
+display:block;
+padding:10px 15px;
+color:black;
+text-decoration:none;
+border-radius:5px;
+}
+
+/* 🔥 HOVER EFFECT */
+.dropdown a:hover{
+background:#0b1c3d;
+color:white;
+}
+/* HERO */
+.hero{
+    height:60vh;
+    background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center/cover;
+    display:flex;
+    align-items:center;
+    padding-left:60px;
+    color:#ffffff;   /* 🔥 change here */
+}
+
+.hero h1{
+    font-size:50px;
+    max-width:500px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+/* BUTTON */
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 20px;
+    background: linear-gradient(90deg, #0097a7, #00bcd4);
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+/* VEHICLE SECTION */
+.vehicles{
+    padding:40px;
+}
+
+.cards{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.card-content h3{
+    margin-bottom:10px;
+}
+
+.card-content p{
+    font-size:14px;
+    margin:5px 0;
+}
+
+/* ABOUT SECTION */
+.about {
+  padding: 80px 50px;
+  background: #f5f5f5;
+}
+
+/* MAIN LAYOUT */
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+/* IMAGE COLLAGE */
+/* IMAGE CONTAINER */
+.about-img {
+  position: relative;
+  width: 550px;
+  height: 420px;
+}
+
+/* ALL IMAGES */
+.about-img img {
+  position: absolute;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: 0.4s;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* IMAGE 1 (LEFT BIG) */
+.img1 {
+  width: 260px;
+  height: 350px;
+  left: 0;
+  top: 60px;
+  z-index: 1;
+}
+
+/* IMAGE 2 (TOP RIGHT) */
+.img2 {
+  width: 260px;
+  height: 200px;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+/* IMAGE 3 (BOTTOM RIGHT) */
+.img3 {
+  width: 260px;
+  height: 200px;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+
+
+/* HOVER EFFECT */
+.about-img img:hover {
+  transform: scale(1.08);
+}
+/* TEXT SIDE */
+.about-text {
+  max-width: 500px;
+}
+
+.about-text h2 {
+  font-size: 34px;
+  margin-bottom: 20px;
+  color: #0b1c3d;
+}
+
+.about-text p {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #444;
+  line-height: 1.6;
+}
+/* MODAL (LOGIN/REGISTER) */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.modal-content{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  width:90%;
+  max-width:400px;
+  position:relative; /* 🔥 IMPORTANT */
+}
+
+.modal-content input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+.close{
+    float:right;
+    cursor:pointer;
+background: linear-gradient(90deg, #0097a7, #00bcd4);
+}
+
+.top-bar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#0b1c3d;
+color:white;
+padding:8px 30px;
+font-size:14px;
+}
+
+/* FIX CLOSE BUTTON */
+.booking-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
+  z-index: 1000;
+}
+
+/* Right side contact */
+.contact-info{
+display:flex;
+gap:20px;   /* 👈 space between email & phone */
+align-items:center;
+}
+
+/* Links */
+.top-bar a{
+color:white;
+text-decoration:none;
+}
+
+.top-bar a:hover{
+color:#00bcd4;
+}
+#tourism .card-content {
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+#tourism .card h3 {
+    font-size: 18px;
+    margin: 10px 0 5px 0;
+    color: #0b1c3d;
+}
+
+#tourism .card p {
+    color: #0099cc;
+    font-weight: bold;
+}
+.footer{
+background: linear-gradient(90deg, #0097a7, #00bcd4);
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+.footer-content p{
+margin:5px 0;
+font-size:14px;
+}
+
+.booking-box input,
+.booking-box select{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+
+.form-box{
+  display:flex;
+  flex-direction:column;  /* 🔥 THIS MAKES IT VERTICAL */
+}
+
+.form-box input{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+.form-box .book-btn{
+  width:100%;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Chalo Travels</div>
+
+    <div class="nav-links">
+        <a href="#">Home</a>
+
+<li class="menu-item">
+  <a href="#">Vehicles ▼</a>
+
+  <div class="dropdown">
+   <a href="#" onclick="showSection('vehicles'); return false;">Car</a>
+<a href="#" onclick="showSection('vehicles'); return false;">Tempo Traveller</a>
+<a href="#" onclick="showSection('vehicles'); return false;">Bus</a>
+  </div>
+</li>
+<li class="menu-item">
+  <a href="#">Account ▼</a>
+
+  <div class="dropdown">
+   <a href="#" onclick="openLogin(); return false;">Login</a>
+<a href="#" onclick="openRegister(); return false;">Register</a>
+  </div>
+</li>
+            </div>
+</div>
+
+<!-- HERO -->
+
+<div class="hero">
+    <div>
+        <h1>Explore Clean & Comfortable Travel with Best Rental Vehicles</h1>
+        
+    </div>
+</div>
+<!-- ABOUT US SECTION -->
+<section class="about">
+ 
+  <div class="about-container">
+
+    <!-- LEFT IMAGE -->
+  <div class="about-img">
+  <img src="https://images.pexels.com/photos/18054269/pexels-photo-18054269/free-photo-of-woman-in-car-window-on-road-at-sunset.jpeg" class="img1">
+  <img src="https://images.stockcake.com/public/1/5/8/158d6fda-224a-4b37-a700-e314ebac10c7_large/vivid-sunset-road-stockcake.jpg" class="img2">
+  
+ <img src="https://c.ndtvimg.com/gws/ms/5-family-friendly-road-trips-from-delhi/assets/2.jpeg?1755759893" class="img3">
+</div>
+    <!-- RIGHT TEXT -->
+    <div class="about-text">
+      <h2>About Us</h2>
+      <p>
+We offer reliable vehicle rental services across Gujarat to help you explore nearby destinations with ease. Whether you are planning a local visit or organizing a business meeting, we provide a simple and convenient booking experience at affordable rates. From cars to tempo travellers and buses, we ensure a smooth, comfortable, and budget-friendly journey tailored to your needs.
+      </p>
+             
+
+      <p>
+        Our mission is to deliver safe, reliable, and hassle-free travel experiences across cities.
+      </p>
+
+<button class="btn" onclick="showSection('vehicles')">
+  Explore Vehicles
+</button>
+<button class="btn" onclick="showSection('tourism')">
+  Explore Tourist Places
+</button>
+    </div>
+
+  </div>
+
+</section>
+<!-- VEHICLES SECTION -->
+<section id="vehicles" class="section" style="display:none;">
+
+  <h2 class="section-title">Our Vehicles</h2>
+
+  <!-- CARS -->
+  <h3 class="category">Cars</h3>
+  <div class="vehicle-container">
+
+    <div class="card">
+      <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/115025/innova-hycross-exterior-right-front-three-quarter-74.png?isig=0&q=80">
+     <h4>Innova</h4>
+
+  <button class="btn" onclick="showDetails('Innova')">
+    View Details
+  </button>
+</div>
+
+ <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZO94FhJvjCH96WgNav7RrB4fwoGvj_orsdA&s">
+      <h4>XUV700</h4>
+
+  <button class="btn" onclick="showDetails('XUV700')">
+    View Details
+  </button>
+</div>
+
+    
+
+    <div class="card">
+      <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/41523/sonet-exterior-right-front-three-quarter-110.jpeg?q=80">
+      <h4>Kia Sonet</h4>
+
+  <button class="btn" onclick="showDetails('Kia Sonet')">
+    View Details
+  </button>
+</div>
+
+
+
+    <div class="card">
+      <img src="https://imgd.aeplcdn.com/664x374/cw/ec/26860/Maruti-Suzuki-Dzire-Exterior-118637.jpg?wm=0&q=80">
+      <h4>Dzire</h4>
+
+  <button class="btn" onclick="showDetails('Dzire')">
+    View Details
+  </button>
+</div>
+
+</div>
+
+  <!-- TEMPO -->
+  <h3 class="category">Tempo Traveller</h3>
+  <div class="vehicle-container">
+
+    <div class="card">
+      <img src="https://res.cloudinary.com/do5ceotwh/image/fetch/c_scale,w_300,f_auto,q_30/https://trucksbuses.com/uploads/Force%20Tempo%20Traveler%203050(1).jpg">
+      <h4>Mini Tempo Traveller</h4>
+<button class="btn" onclick="showDetails('Mini Tempo Traveller')">
+    View Details
+  </button>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScP2NgFs6o2_FvejAZVa_BoMSJAFk3ZOA3dg&s">
+      <h4>Medium Tempo Traveller</h4>
+<button class="btn" onclick="showDetails('Medium Tempo Traveller')">
+    View Details
+  </button>
+    </div>
+
+    <div class="card">
+      <img src="https://fixourtrip.com/wp-content/uploads/2025/07/Traveller-1024x573.webp">
+      <h4>Large Tempo Traveller</h4>
+<button class="btn" onclick="showDetails('Large Tempo Traveller')">
+    View Details
+  </button>
+    </div>
+
+
+  <!-- BUS -->
+  <h3 class="category">Bus</h3>
+  <div class="vehicle-container">
+
+    <div class="card">
+      <img src="https://img.freepik.com/premium-photo/black-small-bus-travel-car-with-empty-body-design-advertising-3d-illustration_101266-13533.jpg">
+      <h4>Mini Bus</h4>
+<button class="btn" onclick="showDetails('Mini Bus')">
+    View Details
+  </button>
+    </div>
+
+    <div class="card">
+      <img src="https://png.pngtree.com/png-vector/20250605/ourmid/pngtree-passenger-bus-png-image_16462316.png">
+      <h4>Midi Bus</h4>
+<button class="btn" onclick="showDetails('Midi Bus')">
+    View Details
+  </button>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8TcxKrXpvqujRyWoALzh7l4X7mA28gGPcrw&s">
+      <h4>Luxury Bus</h4>
+<button class="btn" onclick="showDetails('Luxury Bus')">
+    View Details
+  </button>
+    </div>
+
+
+
+</section>
+<section id="tourism" class="section" style="display:none;">
+  <h2 class="section-title">Best of Gujarat</h2>
+  <p style="text-align:center; color:#666; margin-top:-30px; margin-bottom:30px;">Explore the wonders of the state with our comfortable rentals.</p>
+
+  <div class="vehicle-container">
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPTXKfwNQOSFEa66ITPbPhxOXYPc_P7nbclA&s" alt="Statue of Unity">
+      <div class="card-content">
+        <h3>Statue of Unity</h3>
+        <p>Kevadia</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://ucarecdn.com/15d5d269-a166-4671-a7b9-532f8f2618d5/-/format/auto/-/preview/3000x3000/-/quality/lighter/b28df187-6a41-4b6f-ac82-e9a567ee4482.jpg" alt="Rann of Kutch">
+      <div class="card-content">
+        <h3>White Desert</h3>
+        <p>Rann of Kutch</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://www.gujarattrips.com/assets/images/resources/destinations/34.png" alt="Gir Forest">
+      <div class="card-content">
+        <h3>Gir National Park</h3>
+        <p>Sasan Gir</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://www.thehitavada.com/Encyc/2026/1/9/Swabhiman-Parva-begins-at-Somnath-Temple-in-Gujarat_202601091136399612_H@@IGHT_482_W@@IDTH_803.jpg" alt="Somnath Temple">
+      <div class="card-content">
+        <h3>Somnath Temple</h3>
+        <p>Veraval</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/LakshmiVilas_Palace.jpg" alt="Laxmi Vilas Palace">
+      <div class="card-content">
+        <h3>Laxmi Vilas Palace</h3>
+        <p>Vadodara</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://www.go2india.in/gujarat/images/dwarka-temple.JPG" alt="Dwarka">
+      <div class="card-content">
+        <h3>Dwarkadhish Temple</h3>
+        <p>Dwarka</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://5.imimg.com/data5/JM/JH/GLADMIN-56750736/saputara-hill-station-adventure-camp.jpg" alt="Saputara">
+      <div class="card-content">
+        <h3>Saputara Hills</h3>
+        <p>Dang District</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwHfuGmgUmY6XQgXl10ejduZbsyogN4MNxPQ&s" alt="Modhera Sun Temple">
+      <div class="card-content">
+        <h3>Sun Temple</h3>
+        <p>Modhera</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- REGISTER MODAL -->
+<div class="modal" id="registerModal">
+  <div class="details-box form-box">
+
+    <span class="close-btn" onclick="closeModal()">✖</span>
+
+
+    <hr>
+
+    <input type="text" id="reg_name" placeholder="Name">
+    <input type="text" id="reg_phone" placeholder="Phone Number">
+    <input type="password" id="reg_password" placeholder="Password">
+
+    <button class="book-btn" onclick="registerUser()">Register</button>
+
+  </div>
+</div>
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+  <div class="details-box form-box">
+
+    <span class="close-btn" onclick="closeModal()">✖</span>
+
+
+
+    <hr>
+
+    <input type="text" id="login_phone" placeholder="Phone Number">
+    <input type="password" id="login_password" placeholder="Password">
+
+    <button class="book-btn" onclick="loginUser()">Login</button>
+
+    <p style="text-align:center; margin-top:10px;">
+      Don't have an account? 
+    <span class="register-link" onclick="openRegisterFromLogin()">
+  Register here
+</span>
+    </p>
+
+    <p onclick="openForgot()" style="cursor:pointer; text-align:center; color:#ff6f00;">
+      Forgot Password?
+    </p>
+
+  </div>
+</div>
+
+<!-- FORGOT PASSWORD -->
+<div class="modal" id="forgotModal">
+  <div class="details-box form-box">
+
+    <span class="close-btn" onclick="closeModal()">✖</span>
+
+    <div class="vehicle-title">Create a new Password</div>
+
+    <hr>
+
+    <input type="text" id="fp_phone" placeholder="Phone Number">
+    <input type="password" id="fp_newpass" placeholder="New Password">
+
+    <button class="book-btn" onclick="resetPassword()">Update</button>
+
+  </div>
+</div>
+
+
+<!-- JAVASCRIPT -->
+<script>
+
+function showSection(id){
+
+  // hide all sections
+  document.querySelectorAll(".section").forEach(sec=>{
+    sec.style.display = "none";
+  });
+
+  // show selected section
+  document.getElementById(id).style.display = "block";
+
+  // scroll to section
+  document.getElementById(id).scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function showDetails(vehicleName){
+
+  let v = vehiclesData[vehicleName];
+
+  if(!v){
+    alert("Vehicle data not found");
+    return;
+  }
+
+  document.getElementById("vehicleName").innerText = vehicleName;
+  document.getElementById("vSeats").innerText = v.seats || "-";
+  document.getElementById("vKm").innerText = v.km || "-";
+  document.getElementById("vPetrol").innerText = v.petrol || "-";
+  document.getElementById("vDiesel").innerText = v.diesel || "-";
+
+  document.getElementById("vDriver").innerText = v.driver || "-";
+  document.getElementById("vToll").innerText = v.toll || "-";
+  document.getElementById("vNight").innerText = v.night || "-";
+
+  // 🔥 HANDLE AC SECTION
+  if(v.ac && v.nonac){
+    document.getElementById("acSection").style.display = "block";
+    document.getElementById("vAC").innerText = v.ac;
+    document.getElementById("vNonAC").innerText = v.nonac;
+  } else {
+    document.getElementById("acSection").style.display = "none";
+  }
+
+  document.getElementById("vehicleModal").style.display = "flex";
+}
+
+const vehiclesData = {
+
+  // 🚗 CARS
+  "Innova": {
+    seats: "7 Seater",
+    km: "250 KM/day",
+    petrol: "₹17/km",
+    diesel: "₹16/km",
+   
+    driver: "₹250/day",
+    toll: "Extra",
+    night: "NA"
+  },
+
+  "Dzire": {
+    seats: "5 Seater",
+    km: "250 KM/day",
+    petrol: "₹14/km",
+    diesel: "₹13/km",
+   
+    driver: "₹250/day",
+    toll: "Extra",
+    night: "NA"
+  },
+
+  "Kia Sonet": {
+    seats: "5 Seater",
+    km: "250 KM/day",
+    petrol: "₹17/km",
+    diesel: "₹15/km",
+  
+    driver: "₹250/day",
+    toll: "Extra",
+    night: "NA"
+  },
+
+  "XUV700": {
+    seats: "7 Seater",
+    km: "250 KM/day",
+    petrol: "₹18/km",
+    diesel: "₹16/km",
+   
+    driver: "₹250/day",
+    toll: "Extra",
+    night: "NA"
+  },
+
+  // 🚐 TEMPO TRAVELLER
+  "Mini Tempo Traveller": {
+    seats: "9-12 Seater",
+    km: "250 KM/day",
+    ac: "₹7500/day",
+    nonac: "₹5000/day",
+    petrol: "-",
+    diesel: "-",
+    driver: "₹300/day",
+    toll: "Extra",
+    night: "NA"
+  },
+
+  "Medium Tempo Traveller": {
+    seats: "14-18 Seater",
+    km: "300 KM/day",
+    ac: "₹9500/day",
+    nonac: "₹7000/day",
+    petrol: "-",
+    diesel: "-",
+    driver: "₹300/day",
+    toll: "Extra",
+    night: "NA"
+  },
+
+  "Large Tempo Traveller": {
+    seats: "20-26 Seater",
+    km: "300 KM/day",
+    ac: "₹11500/day",
+    nonac: "₹9000/day",
+    petrol: "-",
+    diesel: "-",
+    driver: "₹300/day",
+    toll: "Extra",
+    night: "NA"
+  },
+
+  // 🚌 BUS
+  "Mini Bus": {
+    seats: "20-25 Seater",
+    km: "250 KM/day",
+    ac: "₹14000/day",
+    nonac: "₹8000/day",
+    petrol: "-",
+    diesel: "-",
+    driver: "₹500/day",
+    toll: "Extra",
+    night: "NA"
+  },
+
+  "Midi Bus": {
+    seats: "30-40 Seater",
+    km: "300 KM/day",
+    ac: "₹18000/day",
+    nonac: "₹11000/day",
+    petrol: "-",
+    diesel: "-",
+    driver: "₹500/day",
+    toll: "Extra",
+    night: "NA"
+  },
+
+  "Luxury Bus": {
+    seats: "45-60 Seater",
+    km: "300 KM/day",
+    ac: "₹20500/day",
+    nonac: "₹17000/day",
+    petrol: "-",
+    diesel: "-",
+    driver: "₹500/day",
+    toll: "Extra",
+    night: "NA"
+  }
+
+};
+
+function openLogin(){
+  document.getElementById("loginModal").style.display = "flex";
+}
+
+function closeModal(){
+    document.getElementById('loginModal').style.display = 'none';
+    document.getElementById('registerModal').style.display = 'none';
+    document.getElementById('forgotModal').style.display = 'none';
+}
+
+
+function openRegister(){
+document.getElementById("registerModal").style.display="flex";
+}
+
+
+function openBooking(){
+
+  // 🔥 CLOSE VEHICLE DETAILS FIRST
+  document.getElementById("vehicleModal").style.display = "none";
+
+  // 🔥 THEN OPEN BOOKING
+  document.getElementById("bookingModal").style.display = "flex";
+
+  let name = document.getElementById("vehicleName").innerText;
+  document.getElementById("selectedVehicle").value = name;
+}
+function openRegisterFromLogin(){
+  closeModal();  // close login modal
+  document.getElementById("registerModal").style.display = "flex";
+}
+
+function closeBooking(){
+  document.getElementById("bookingModal").style.display = "none";
+}
+
+window.onclick = function(e){
+
+  let login = document.getElementById("loginModal");
+  let register = document.getElementById("registerModal");
+  let booking = document.getElementById("bookingModal");
+  let vehicle = document.getElementById("vehicleModal"); // ✅ ADD THIS
+
+  if(e.target === login) login.style.display="none";
+  if(e.target === register) register.style.display="none";
+  if(e.target === booking) booking.style.display="none";
+  if(e.target === vehicle) vehicle.style.display="none"; // ✅ ADD THIS
+}
+
+function bookNow(){
+
+ 
+  if(!sessionStorage.getItem("user")){
+    
+    alert("Please login first to book a vehicle");
+
+    // 🔥 AFTER clicking OK → this runs
+    closeBooking();
+    openLogin();
+
+    return;
+  }
+
+  let formData = new FormData();
+
+  let name = document.querySelector("input[placeholder='Your Name']").value;
+  let phone = document.querySelector("input[placeholder='Phone Number']").value;
+  let email = document.querySelector("input[placeholder='Email']").value;
+  let pickup = document.querySelector("input[type='date']").value;
+  let drop = document.querySelectorAll("input[type='date']")[1].value;
+
+  if(!name || !phone || !email || !pickup || !drop){
+    alert("Fill all fields");
+    return;
+  }
+
+  if(new Date(drop) < new Date(pickup)){
+    alert("Drop date must be after pickup date");
+    return;
+  }
+
+  formData.append("name", name);
+  formData.append("phone", phone);
+  formData.append("email", email);
+  formData.append("vehicle", document.getElementById("selectedVehicle").value);
+  formData.append("pickup_date", pickup);
+  formData.append("drop_date", drop);
+
+  fetch("book.php", {
+      method: "POST",
+      body: formData
+  })
+  .then(res => res.text())
+  .then(res => {
+      alert(res); 
+      closeBooking();
+  })
+  .catch(() => alert("Error connecting to server"));
+}
+
+function isStrongPassword(password){
+  return password.length >= 8;
+}
+
+function openForgot(){
+  closeModal();
+  document.getElementById("forgotModal").style.display = "flex";
+}
+
+function registerUser(){
+
+  let name = document.getElementById("reg_name").value;
+  let phone = document.getElementById("reg_phone").value;
+  let password = document.getElementById("reg_password").value;
+
+  if(!name || !phone || !password){
+    alert("Please fill all fields");
+    return;
+  }
+
+  let data = new FormData();
+  data.append("name", name);
+  data.append("phone", phone);
+  data.append("password", password);
+
+  fetch("register.php", {
+    method: "POST",
+    body: data
+  })
+  .then(res => res.text())
+  .then(res => {
+    console.log("Server response:", res); // DEBUG
+    alert(res);
+
+    if(res.includes("Registered Successfully")){
+      closeModal();
+    }
+  })
+  .catch(error => {
+    console.log("Fetch error:", error);
+    alert("Server not reachable");
+  });
+}
+
+
+
+function resetPassword(){
+  let data = new FormData();
+  data.append("phone", document.getElementById("fp_phone").value);
+  data.append("new_password", document.getElementById("fp_newpass").value);
+
+  fetch("forgot.php", { method:"POST", body:data })
+  .then(res=>res.text())
+  .then(res=>alert(res));
+}
+
+
+function scrollToTop(){
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+
+window.onscroll = function(){
+
+  let btn = document.getElementById("topBtn");
+
+  if(document.documentElement.scrollTop > 200){
+    btn.style.display = "block";   // show button
+  } else {
+    btn.style.display = "none";    // hide button
+  }
+
+};
+
+
+function closeVehicleModal(){
+  document.getElementById("vehicleModal").style.display = "none";
+}
+
+function loginUser(){
+
+  let phone = document.getElementById("login_phone").value;
+  let password = document.getElementById("login_password").value;
+
+  let data = new FormData();
+  data.append("phone", phone);
+  data.append("password", password);
+
+  fetch("login.php", {
+    method: "POST",
+    body: data
+  })
+  .then(res => res.text())
+  .then(res => {
+    alert(res);
+
+    if(res.includes("Success")){
+      sessionStorage.setItem("user", phone);
+      closeModal();
+    }
+  });
+}
+
+</script>
+
+
+
+
+
+<div id="vehicleModal" class="modal">
+  <div class="details-box">
+
+    <span class="close-btn" onclick="closeVehicleModal(); event.stopPropagation();">✖</span>
+
+    <div class="vehicle-title" id="vehicleName"></div>
+
+    <hr>
+
+    <div class="details-row"><span>Seating</span><span id="vSeats"></span></div>
+    <div class="details-row"><span>KM Limit</span><span id="vKm"></span></div>
+    <div class="details-row"><span>Petrol Rate</span><span id="vPetrol"></span></div>
+    <div class="details-row"><span>Diesel Rate</span><span id="vDiesel"></span></div>
+<div id="acSection">
+  <div class="details-row"><span>AC Rate</span><span id="vAC"></span></div>
+  <div class="details-row"><span>Non-AC Rate</span><span id="vNonAC"></span></div>
+</div>
+    <div class="details-row"><span>Driver</span><span id="vDriver"></span></div>
+    <div class="details-row"><span>Toll</span><span id="vToll"></span></div>
+    <div class="details-row"><span>Night</span><span id="vNight"></span></div>
+
+    <button class="book-btn" onclick="openBooking()">Book Now</button>
+  </div>
+</div>
+<!-- BOOKING FORM MODAL -->
+<div id="bookingModal" class="modal">
+  <div class="details-box booking-box">
+
+    <!-- CLOSE BUTTON -->
+    <span class="close-btn" onclick="closeBooking()">✖</span>
+
+    <!-- TITLE -->
+    <div class="vehicle-title">Book Vehicle</div>
+
+    <hr>
+
+    <input type="text" placeholder="Your Name">
+    <input type="text" placeholder="Phone Number">
+    <input type="email" placeholder="Email">
+
+    <label>Select Vehicle</label>
+    <select id="selectedVehicle">
+      <option value="">Select Vehicle</option>
+      <option>Innova</option>
+      <option>XUV700</option>
+      <option>Kia Sonet</option>
+      <option>Dzire</option>
+      <option>Mini Tempo Traveller</option>
+      <option>Medium Tempo Traveller</option>
+      <option>Large Tempo Traveller</option>
+      <option>Mini Bus</option>
+      <option>Midi Bus</option>
+      <option>Luxury Bus</option>
+    </select>
+
+    <label>Pick Up Date</label>
+    <input type="date">
+
+    <label>Drop Off Date</label>
+    <input type="date">
+
+    <button class="book-btn" onclick="bookNow()">
+      Book Taxi Now
+    </button>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-content">
+    <h3>Chalo Travels</h3>
+    <p>Explore Gujarat with comfort & trust</p>
+    <p>📧 chalotravel@gmail.com | 📞 +91 7779024533</p>
+  </div>
+
+
+<button onclick="scrollToTop()" id="topBtn">↑</button>
+
+</footer>
+</body>
+</html>
